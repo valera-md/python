@@ -16,7 +16,8 @@
 |                   a     b     c   res     |
 | call              |     |     |    |      |
 |    \              v     v     v    v      |
-| +-printFormated(par1, par2, par3, res)--+ |    | | print(f"the average of                | |
+| +-printFormated(par1, par2, par3, res)--+ |    
+| | print(f"the average of                | |
 | | {par1} {par2} {par3} is {res}")       | |
 | +---------------------------------------+ |
 |                                           |
