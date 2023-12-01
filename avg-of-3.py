@@ -42,3 +42,4 @@ res = avg(a,b,c)
 # print(f"the average of {a} {b} {c} is {res}")
 printFormated(a, b, c, res)
 # /MAIN PROGRAM
+# hm1: redraw the diagram
