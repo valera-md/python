@@ -50,13 +50,13 @@ print(marks)
 diagram
         marks ~> ["sem_1", ... ] dictionary
         |    ^ \  
-        |    |  -------------
-        v    |               \
-generalMark(value)|           \
-        |   /                  \
-        v  /                    \
-       value                     \
-        .                         \------------------------
+        |    |  -------------------------------------
+        v    |                                       \
+generalMark(value)|                                   \
+        |   /                                          \
+        v  /                                            \
+       value                                             \
+        .                                                 \
 value["sem_1", ... ] -> read -> original                   \
         |                                                   \
         v                                                    v
