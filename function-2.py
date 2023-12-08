@@ -1,4 +1,4 @@
-function-2.py
+# function-2.py
 # - generate random 2d array
 # - print 2d array
 # - calculate the average value of 2d array
