@@ -2,7 +2,7 @@
 # - generate random 2d array
 # - print 2d array
 # - calculate the average value of 2d array
-# srp - simple responsibility principle, принцип единственной ответственности, обозначающий, что каждая функция должна иметь одну ответственность. Все поведения функции должны быть направлены исключительно на обеспечение этой ответственности.
+# srp - single responsibility principle, принцип единственной ответственности, обозначающий, что каждая функция должна иметь одну ответственность. Все поведения функции должны быть направлены исключительно на обеспечение этой ответственности.
 
 from random import randint
 # hm1: pass value range as arguments
