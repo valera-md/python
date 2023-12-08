@@ -14,6 +14,7 @@ def random2dArray(rows, cols, min, max):
    row. append (randint(min, max))
   matrix .append(row)
  return matrix
+
 # hm2: add a header
 # size 5 x 3
 def print2dArray(matrix):
@@ -23,6 +24,7 @@ def print2dArray(matrix):
   for ci in range(len(matrix[0])):
    print(f" {matrix[ri][ci]:5} ", end="")
   print()
+ 
 # hm3: create another function that finds min, max values, returns grouped
 def minmax2dArray(matrix):
  min = max = matrix[0][0]
@@ -33,6 +35,7 @@ def minmax2dArray(matrix):
    if matrix[ri][ci] > max:
     max = matrix[ri][ci]
  return [min, max]
+
 def average2dArray(matrix):
  s = 0
  w = len(matrix[0])
