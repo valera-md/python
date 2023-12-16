@@ -50,7 +50,7 @@ printContainerValue(Container)
 +--------------- main program -----------------------+
 |                    call                            |
 |                     |                              |
-|class Container:    setContainerValue(Class, value) |
+|class Container     setContainerValue(Class, value) |
 |                                       |       |    |
 |                     +-----------------+       |    |
 |                     v                         |    |
@@ -61,7 +61,7 @@ printContainerValue(Container)
 +--------------- main program -----------------------+
 |                     call                           |
 |                      |                             |
-|class Container:     unsetContainerValue(Class)     |
+|class Container      unsetContainerValue(Class)     |
 |                                          |         |
 |                      +-------------------+         |
 |                      v                             |
@@ -74,8 +74,8 @@ printContainerValue(Container)
 |        |                                                           |
 |       printContainerValue(Class)                                   |
 |                            | |                                     |
-| +- Class.is_empty == True -+ +- Class.is_empty == False: -+        |
-| v                                                         v        |
+| +- Class.is_empty == True -+ +- Class.is_empty == False -+         |
+| v                                                        v         |
 | print("Container is empty")     print(f"Container<{Class.value}>") |
 |                                                                    |
 +--------------------------------------------------------------------+
