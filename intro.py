@@ -46,8 +46,8 @@ def newDrink(name, price, quantity, volume):
 def printDrink(drink):
  print(f"{drink.name} - {drink.price} dollars, {drink.quantity} cups, {drink.volume} liters.")
  
-dish = newFood("Salad", 5, 1, 400)
-printFood(dish)
+food = newFood("Salad", 5, 1, 400)
+printFood(food)
 drink = newDrink("Juice", 3, 2, 0.3)
 printDrink(drink)
 
@@ -61,5 +61,5 @@ def printItem(item):
 
 printItem(p1)
 printItem(p2)
-printItem(dish)
+printItem(food)
 printItem(drink)
