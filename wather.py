@@ -11,12 +11,11 @@ from json import loads
 key = "your_api_key_goes_here top_secret"
 domain = "api.openweathermap.org"
 # connect and get data
-def connect(domain, endpoint_current):
- connection = HTTPSConnection(domain)
+connection = HTTPSConnection(domain)
+def connect(endpoint_current):
  connection.request("GET", endpoint_current)
  response = connection.getresponse()
  return loads(response.read())
- connection.close()
 # process data
 def parse(data):
  return (data['main']['temp'], data['wind']['speed'], data['weather'][0]['description'], data['name'])
@@ -30,13 +29,14 @@ while True:
  city = input("Find out the weather in your city. Type in city here or press enter to exit: ")
  if city != "":
   endpoint_current = f"/data/2.5/weather?q={city}&appid={key}&units=metric&lang=ru"
-  data = connect(domain, endpoint_current)
+  data = connect(endpoint_current)
   if data["cod"] == 200:
    temp, wind, weather, location = parse(data)
   else:
    input("City was not found, press enter and try another city: ")
    continue
  else:
+  connection.close()
   print("Have a nice day.")
   exit()
  printdata()
