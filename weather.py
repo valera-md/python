@@ -8,7 +8,7 @@
 from http.client import HTTPSConnection
 from json import loads
 
-key = "your_api_key_goes_here top_secret"
+key = "api_key_goes_here"
 domain = "api.openweathermap.org"
 # connect and get data
 connection = HTTPSConnection(domain)
