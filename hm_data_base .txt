@@ -1,0 +1,73 @@
+hm1: find for psql the command/statement which will grant user e_shop_admin full acces to e-shop-python db
+GRANT ALL PRIVILEGES ON DATABASE "e-shop-python" TO e_shop_admin; doesn't work SELECT
+REVOKE ALL PRIVILEGES ON DATABASE "e-shop-python" FROM e_shop_admin;
+ALTER USER e_shop_admin WITH SUPERUSER;
+ALTER USER e_shop_admin WITH NOSUPERUSER;
+
+hm2: login with this user and check if he can operate on the db
+psql -U e_shop_admin -d "e-shop-python"
+INSERT INTO "products"(id, name) VALUES(2, 'Product 2');
+
+hm3: find a way to set price default value to 0
+CREATE TABLE "products" (id integer NOT NULL, name character varying NOT NULL, price integer DEFAULT 0);
+
+hm1: apply 1nf, 2nf 
+client info: id, fullName, vip, phone, email, physical address
+hm2: apply 1nf, 2nf
+client bag info: client_id, product_id, quantity, item_cost, total_cost
+
+| id (PK)|  fullName     | vip | phisical address
+| -----------------------------------------------
+| 1        Kimberly Davis true  Pushkin, 5
+| 2        Adam Fernandez false Gogol, 10
+
+| cl_id (FK)|  phone     | email 
+| ------------------------------------
+| 1          '+123456789' 01_@mail.com
+| 1                       02_@mail.com
+| 2          '+123456789' 03_@mail.com
+| 2          '+123456791' 
+По правилу нормлизации первой формы два емейла первого клиента и два телефона второго клиента сгруппированные в горизонтальном напривлении были разгруппированы в вертикальном направлении. По правилу нормализации второй формы, чтобы не нарушать уникальность идентификации и не дублировать одно и то же имя, записи были разбиты на две таблицы.
+Во втортой таблице значения в поле "сcылочный ключ", foreing key, играют роль ключа для значений из первой таблицы.
+| client_id (FK)|  product_id     | quantity |  item_cost | total_cost
+| --------------------------------------------------------------------
+| 1                   01               2          10        20
+| 1                   02               3          12        36
+| 2                   01               4          10        40 
+| 2                   03               5          8         40
+Значения в поле client_id играют роль ключа для значений из первой таблицы.
+
+INSERT INTO "money" VALUES (2, 15500, 'EURO');
+INSERT INTO "products" VALUES (10, 'Product 10', 2);
+INSERT INTO "stock" VALUES (2, 10, 200);
+--2. hm1: emulate product elimitation from STOCK
+DELETE FROM "stock" WHERE product_id = 10;
+DELETE FROM "products" WHERE id = 10;
+DELETE FROM "money" WHERE id = 2;
+
+-- hm2: create bag, bag_items and RELATIONS
+CREATE TABLE bags (
+    id integer PRIMARY KEY,
+    cost_id integer,
+    client_id integer
+);
+ALTER TABLE "bags" ADD CONSTRAINT fk_bags_money FOREIGN KEY (cost_id) REFERENCES "money" (id);
+ALTER TABLE "bags" ADD CONSTRAINT fk_bags_clients FOREIGN KEY (client_id) REFERENCES "clients" (id);
+
+CREATE TABLE bag_items (
+    id integer PRIMARY KEY,
+    bag_id integer,
+    product_id integer,
+    quantity integer NOT NULL
+);
+ALTER TABLE "bag_items" ADD CONSTRAINT fk_bag_items_bag FOREIGN KEY (bag_id) REFERENCES "bags" (id);
+ALTER TABLE "bag_items" ADD CONSTRAINT fk_bag_items_products FOREIGN KEY (product_id) REFERENCES "products" (id);
+
+-- 4. hm3: emulate the situation when a client gets a bag and puts a product in the bag
+INSERT INTO "bags" VALUES (1, 1, 1);
+INSERT INTO "bags" VALUES (2, 2, 2);
+INSERT INTO "bag_items" VALUES (1, 1, 1, 5);
+INSERT INTO "bag_items" VALUES (2, 2, 10, 15);
+
+-- 6. hm4: using SELECT + JOIN show complete information about products in stock
+SELECT * FROM "stock" JOIN "products" ON "products".id = "stock".product_id JOIN "money" ON "money".id = "products".price_id;
