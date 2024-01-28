@@ -40,7 +40,7 @@ client bag info: client_id, product_id, quantity, item_cost, total_cost
 INSERT INTO "money" VALUES (2, 15500, 'EURO');
 INSERT INTO "products" VALUES (10, 'Product 10', 2);
 INSERT INTO "stock" VALUES (2, 10, 200);
---2. hm1: emulate product elimitation from STOCK
+--2. hm1: emulate product elimination from STOCK
 DELETE FROM "stock" WHERE product_id = 10;
 DELETE FROM "products" WHERE id = 10;
 DELETE FROM "money" WHERE id = 2;
