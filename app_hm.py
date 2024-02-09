@@ -26,7 +26,7 @@ conn = psycopg2.connect("dbname=e-shop-python user=postgres password=1234")
 #"""
 for i in range(10):
  product_id = random.randint(100, 1000)
- product_price = int(random.uniform(10, 100) * 100)/100
+ product_price = int(random.uniform(10, 100) * 100) / 100
  product_quantity = random.randint(1000, 10000)
 
  sql = f"""
