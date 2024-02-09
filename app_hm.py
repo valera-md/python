@@ -4,7 +4,7 @@ import random
 # hm1: insert 10 products with random values
 
 # 1. connect
-conn = psycopg2.connect("dbname=e-shop-python user=postgres password=1234")
+conn = psycopg2.connect("dbname=e-shop-python user=postgres password=password")
 # 2. prepare the query
 #sql = """
 #BEGiN;
