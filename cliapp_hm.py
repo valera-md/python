@@ -49,7 +49,7 @@ client_phone = "+223435123"
 client_password = "765432"
 def registerClient(client_id, client_name, client_email, client_phone, client_password)
 
-hm: client authentication
+#hm: client authentication
 #ALTER TABLE clients
 #ADD COLUMN login boolean DEFAULT false;
 # добавляем колонку логин
@@ -106,18 +106,3 @@ def loginClient(client_email, client_password):
   WHERE email = '{client_email}';
   """)
   print("Account login succeed.")
-
-
-#python3 -m venv env - через модудь venv создай environment
-#source env/bin/activate - запуск environment
-#app (python) -> ORM -> adapter (psycopg-binary) -> postgresql
-# ORM - object relational mapping, типа библиотеки, паттерны приненим
-ORM будем использовать в основной логике, для того чтобы функциями туда передовать какие-то действия, данные или получать результат оттуда.
-#pip install psycopg2-binary - установка psycopg2 в environment
-#sudo docker-composer up - запуск файла docker-compose.yml, который запускает или создаёт и запускает контейнер
-# в пайтоне многострочный текст пишется в тройных кавычках """ """, не важно какого характера
-# когда мы вносим изменения типа insert, update, delete обязательно нужно выполнять commit, моментально применять эти измненения
-# psql -U postgres -h localhost -p 5889 - подключение к движку postgresql, к пользователю postgres в контейнере docker
-# \c chat_db - подключение к базе данных chat_db
-# SELECT * FROM clients
-# https://www.psycopg.org/docs/usage.html
