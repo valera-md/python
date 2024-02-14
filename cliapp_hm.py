@@ -52,7 +52,7 @@ def registerClient(client_id, client_name, client_email, client_phone, client_pa
 #hm: client authentication
 #ALTER TABLE clients
 #ADD COLUMN login boolean DEFAULT false;
-# добавляем колонку логин
+# добавляем колонку login
 def loginClient(client_email, client_password):
  conn = psycopg2.connect("dbname=chat_db user=postgres password=qazwsx host=localhost port=5889")
  curs = conn.cursor()
