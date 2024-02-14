@@ -105,4 +105,5 @@ def loginClient(client_email, client_password):
   SET login = true
   WHERE email = '{client_email}';
   """)
+  conn.commit()
   print("Account login succeed.")
